@@ -2,7 +2,7 @@ package com.algorithm.baekjoon;
 
 import java.io.*;
 
-class Main {
+class ch10_04 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
