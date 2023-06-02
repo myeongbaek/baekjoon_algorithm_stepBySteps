@@ -1,9 +1,9 @@
-package com.algorithm.baekjoon;
+package com.algorithm.baekjoon.ch10;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-class Main {
+class ch10_07 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;

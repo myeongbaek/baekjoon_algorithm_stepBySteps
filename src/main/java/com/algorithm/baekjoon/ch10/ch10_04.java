@@ -1,15 +1,14 @@
-package com.algorithm.baekjoon;
+package com.algorithm.baekjoon.ch10;
 
 import java.io.*;
 
-class ch10_01 {
+class ch10_04 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {
-        int A = Integer.parseInt(br.readLine());
-        int B = Integer.parseInt(br.readLine());
-        bw.write(String.valueOf(A * B));
+        long N = Long.parseLong(br.readLine());
+        bw.write(String.valueOf(N * 4));
         bw.flush();
         bw.close();
     }
