@@ -8,7 +8,7 @@
 	
 	git add --all
 	
-	git commit -m "[%date%] 백준 단계별 풀이, ch13 : 정렬"
+	git commit -m "%date%"
 	
 	git push
 	
