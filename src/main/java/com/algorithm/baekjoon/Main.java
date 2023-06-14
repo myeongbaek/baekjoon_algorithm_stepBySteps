@@ -6,35 +6,38 @@ import java.util.StringTokenizer;
 class Main {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    public static StringTokenizer st;
-    public static final int MAXVALUE = 10_000;
+    public static final int MAXVALUE = 10_001;
 
     public static void main(String[] args) throws IOException {
+        int i, n;
         //입력
         int N = Integer.parseInt(br.readLine());
         int[] numbers = new int[N];
         int[] result = new int[N];
-        int[] count = new int[MAXVALUE];
-        for (int i = 0; i < N; i++) {
-            int n = Integer.parseInt(br.readLine());
-            numbers[i] = n;
-            count[n - 1]++; // 과정1 : counting
-        }
+        int[] counting = new int[MAXVALUE];
 
-        // count sort
-        // 축척
-        for(int i = 0; i < MAXVALUE - 1; i++){
-            count[i + 1] += count[i];
+        // 입력, counting
+        for (i = 0; i < N; i++) {
+            n = Integer.parseInt(br.readLine());
+            numbers[i] = n;
+            counting[n]++;
         }
-        // 누적합 - 1 위치에 배치
-        for(int i = 0; i < N; i++){
-            result[count[numbers[i] - 1] - 1] = numbers[i];
+        // 축척
+        // 0 2 2 2 1 2 0 1
+        // 0 2 4 6 7 9 9 10
+        for(i = 0; i < MAXVALUE - 1; i++){
+            counting[i + 1] += counting[i];
+        }
+        // 누적합 - 1 위치에 결과값 배치
+        for(i = 0; i < N; i++){
+            result[counting[numbers[i]] - 1] = numbers[i];
+            counting[numbers[i]]--;
         }
 
         // 출력
         StringBuilder sb = new StringBuilder();
-        for (int n : result) {
-            sb.append(n + "\n");
+        for(i = 0; i < N; i++){
+            sb.append(result[i]).append("\n");
         }
         bw.write(sb.toString());
         bw.flush();
