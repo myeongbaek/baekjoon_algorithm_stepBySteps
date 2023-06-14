@@ -8,19 +8,18 @@ class Main {
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {
+        int[] numbers = new int[5];
+        int total = 0;
         // 입력
-        int N = Integer.parseInt(br.readLine());
-        int[] array = new int[N];
-        for (int i = 0; i < N; i++) {
-            array[i] = Integer.parseInt(br.readLine());
+        for(int i = 0; i < 5; i++){
+            int n = Integer.parseInt(br.readLine());
+            numbers[i] = n;
+            total += n;
         }
-        // 정렬
-        Arrays.sort(array);
+        Arrays.sort(numbers);
+
         //출력
-        for (int i = 0; i < N; i++) {
-            bw.write(String.valueOf(array[i]));
-            bw.newLine();
-        }
+        bw.write("" + total / 5 + "\n" + numbers[2]);
         bw.flush();
         bw.close();
     }
