@@ -1,45 +1,22 @@
 package com.algorithm.baekjoon;
 
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
 class Main {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    public static final int MAXVALUE = 10_001;
-
     public static void main(String[] args) throws IOException {
-        int i, n;
-        //입력
-        int N = Integer.parseInt(br.readLine());
-        int[] numbers = new int[N];
-        int[] result = new int[N];
-        int[] counting = new int[MAXVALUE];
-
-        // 입력, counting
-        for (i = 0; i < N; i++) {
-            n = Integer.parseInt(br.readLine());
-            numbers[i] = n;
-            counting[n]++;
+        String N = br.readLine();
+        int len = N.length();
+        int[] array = new int[len];
+        for(int i = 0; i < len; i++){
+            array[i] = N.charAt(i) - '0';
         }
-        // 축척
-        // 0 2 2 2 1 2 0 1
-        // 0 2 4 6 7 9 9 10
-        for(i = 0; i < MAXVALUE - 1; i++){
-            counting[i + 1] += counting[i];
+        Arrays.sort(array);
+        for(int i = len - 1; i >= 0; i--){
+            bw.write(String.valueOf(array[i]));
         }
-        // 누적합 - 1 위치에 결과값 배치
-        for(i = 0; i < N; i++){
-            result[counting[numbers[i]] - 1] = numbers[i];
-            counting[numbers[i]]--;
-        }
-
-        // 출력
-        StringBuilder sb = new StringBuilder();
-        for(i = 0; i < N; i++){
-            sb.append(result[i]).append("\n");
-        }
-        bw.write(sb.toString());
         bw.flush();
         bw.close();
     }
