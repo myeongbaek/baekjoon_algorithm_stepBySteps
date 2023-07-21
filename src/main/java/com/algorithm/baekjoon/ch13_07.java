@@ -3,7 +3,7 @@ package com.algorithm.baekjoon;
 import java.io.*;
 import java.util.*;
 
-class ch13_7 {
+class ch13_07 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;

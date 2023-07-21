@@ -3,7 +3,7 @@ package com.algorithm.baekjoon;
 import java.io.*;
 import java.util.*;
 
-class ch13_6 {
+class ch13_06 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static void main(String[] args) throws IOException {
