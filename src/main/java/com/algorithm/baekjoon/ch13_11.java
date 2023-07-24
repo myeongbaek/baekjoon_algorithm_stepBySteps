@@ -1,40 +1,41 @@
 package com.algorithm.baekjoon;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 class ch13_11 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;
+
     public static void main(String[] args) throws IOException {
         int N = Integer.parseInt(br.readLine());
-        int[] array = new int[N];
-        int[] result = new int[N];
-        HashSet<Integer> hs = new HashSet<>();
+        int[] origin = new int[N];
+        int[] sorted = new int[N];
+        HashMap<Integer, Integer> hm = new HashMap<>();
+
         //입력
         st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < N; i++){
-            array[i] = Integer.parseInt(st.nextToken());
-            hs.add(array[i]);
+        for (int i = 0; i < N; i++) {
+            int ele = Integer.parseInt(st.nextToken());
+            origin[i] = ele;
+            sorted[i] = ele;
         }
-        //압축
-        ArrayList<Integer> soredArray = new ArrayList<>(hs);
-        Collections.sort(soredArray);
 
-
+        // 순위 (압축)
+        Arrays.sort(sorted);
+        int index = 0;
         for(int i = 0; i < N; i++){
-            for(int j = 0; j < soredArray.size(); j++){
-                if(array[i] <= soredArray.get(j)){
-                    result[i] = j;
-                    break;
-                }
+            if (!hm.containsKey(sorted[i])){
+                hm.put(sorted[i], index++);
             }
         }
 
         //출력
-        for(int i = 0; i < N; i++){
-            bw.write(result[i] + " ");
+        for (int i = 0; i < N; i++) {
+            bw.write(hm.get(origin[i]) + " ");
         }
         bw.flush();
         bw.close();
