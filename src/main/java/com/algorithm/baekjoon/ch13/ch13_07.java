@@ -1,31 +1,32 @@
-package com.algorithm.baekjoon;
+package com.algorithm.baekjoon.ch13;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.*;
 
-class ch13_10 {
+class ch13_07 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;
 
     public static void main(String[] args) throws IOException {
         int N = Integer.parseInt(br.readLine());
-        String[][] array = new String[N][2];
-
+        int[][] array = new int[N][2];
         // 입력
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            array[i][0] = st.nextToken();
-            array[i][1] = st.nextToken();
+            array[i][0] = Integer.parseInt(st.nextToken());
+            array[i][1] = Integer.parseInt(st.nextToken());
         }
-
-        // 정렬
-        Arrays.sort(array, Comparator.comparingInt(o -> Integer.parseInt(o[0])));
-
+        // 람다식을 활용한 정렬
+        Arrays.sort(array, (o1, o2) -> {
+            if (o1[0] == o2[0]) {
+                return o1[1] - o2[1];
+            } else {
+                return o1[0] - o2[0];
+            }
+        });
         // 출력
-        for (int i = 0; i < N; i++) {
+        for(int i = 0; i < N; i++){
             bw.write(array[i][0] + " " + array[i][1]);
             bw.newLine();
         }
@@ -33,3 +34,4 @@ class ch13_10 {
         bw.close();
     }
 }
+
