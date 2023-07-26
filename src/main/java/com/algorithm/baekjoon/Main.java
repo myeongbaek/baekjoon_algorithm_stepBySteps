@@ -1,7 +1,7 @@
 package com.algorithm.baekjoon;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -11,33 +11,26 @@ class Main {
     public static StringTokenizer st;
 
     public static void main(String[] args) throws IOException {
-        int N = Integer.parseInt(br.readLine());
-        int[] origin = new int[N];
-        int[] sorted = new int[N];
-        HashMap<Integer, Integer> hm = new HashMap<>();
-
-        //입력
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            int ele = Integer.parseInt(st.nextToken());
-            origin[i] = ele;
-            sorted[i] = ele;
-        }
-
-        // 순위 (압축)
-        Arrays.sort(sorted);
-        int index = 0;
-        for(int i = 0; i < N; i++){
-            if (!hm.containsKey(sorted[i])){
-                hm.put(sorted[i], index++);
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int cnt = 0;
+        Map<String, Integer> hm = new HashMap<>();
+        // 입력 & 검사
+        for(int i = 0; i < N + M; i++){
+            if(i < N){
+                hm.put(br.readLine(), 0);
+            } else {
+                if(hm.containsKey(br.readLine())){
+                    cnt++;
+                }
             }
         }
-
-        //출력
-        for (int i = 0; i < N; i++) {
-            bw.write(hm.get(origin[i]) + " ");
-        }
+        // 출력
+        bw.write(cnt + "");
         bw.flush();
         bw.close();
+
+
     }
 }
