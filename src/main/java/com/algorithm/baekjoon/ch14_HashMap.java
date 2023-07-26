@@ -89,9 +89,5 @@ class Person{
     public int hashCode(){
         return name.hashCode() + id.hashCode(); // id와 name으로 해시코드를 만들어 주어 id와 name이 동일한 경우 같은 해시 값을 반환하도록 한다.
     } // 따라서 반드시 같은 객체를 판단하는 equals를 재정의할 때 함께 hashCode도 재정의 해주어야 합니다.
-
-
-
-
 }
 
