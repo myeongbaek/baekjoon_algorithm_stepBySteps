@@ -21,10 +21,12 @@ class Main {
         }
 
         List<String> keyList = new ArrayList<>(hm.keySet());
-
-
-
-
-        for(String name : hm.key)
+        keyList.sort(Comparator.reverseOrder());
+        for(String key : keyList){
+            bw.write(key);
+            bw.newLine();
+        }
+        bw.flush();
+        bw.close();
     }
 }
