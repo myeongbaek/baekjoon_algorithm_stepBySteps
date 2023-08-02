@@ -1,4 +1,4 @@
-package com.algorithm.baekjoon;
+package com.algorithm.baekjoon.ch14;
 
 import java.util.Map;
 import java.util.HashMap;

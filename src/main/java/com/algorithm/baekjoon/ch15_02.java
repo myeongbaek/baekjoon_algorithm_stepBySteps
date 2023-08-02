@@ -3,7 +3,7 @@ package com.algorithm.baekjoon;
 import java.io.*;
 import java.util.StringTokenizer;
 
-class Main {
+class ch15_02 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;
@@ -12,15 +12,16 @@ class Main {
         st = new StringTokenizer(br.readLine());
         int a = Integer.parseInt(st.nextToken());
         int b = Integer.parseInt(st.nextToken());
-        st = new StringTokenizer(br.readLine());
-        int c = Integer.parseInt(st.nextToken());
-        int d = Integer.parseInt(st.nextToken());
 
-        int numerator = a * d + c * b;
-        int denominator = b * d;
-
-        int gcd = gcd(numerator, denominator);
-        bw.write(numerator / gcd + " " + denominator / gcd);
+        if(a % b == 0){
+            bw.write(String.valueOf(a));
+        } else if(b % a == 0){
+            bw.write(String.valueOf(b));
+        } else {
+            int gcd = gcd(a, b);
+            long lcm = (long) a * b / gcd;
+            bw.write(String.valueOf(lcm));
+        }
         bw.flush();
         bw.close();
     }
