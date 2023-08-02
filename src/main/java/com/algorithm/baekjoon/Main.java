@@ -1,38 +1,27 @@
 package com.algorithm.baekjoon;
 
 import java.io.*;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.StringTokenizer;
+
 
 class Main {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;
-
-    public static void main(String[] args) throws IOException {
-        Map<Integer, Integer> hm = new HashMap<>();
-        int M = Integer.parseInt(br.readLine());
+    public static void main(String[] args) throws IOException{
         st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < M; i++){
-            int number = Integer.parseInt(st.nextToken());
-            if(hm.containsKey(number)){
-                hm.put(number, hm.get(number) + 1);
-            } else {
-                hm.put(number, 1);
-            }
-        }
-        int N = Integer.parseInt(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int input = 0;
+
         st = new StringTokenizer(br.readLine());
         for(int i = 0; i < N; i++){
-            int key = Integer.parseInt(st.nextToken());
-            if(hm.containsKey(key)){
-                bw.write(hm.get(key) + " ");
-            } else {
-                bw.write(0 + " ");
-            }
+            input = Integer.parseInt(st.nextToken());
         }
-        bw.flush();
-        bw.close();
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0 ; i < M; i++){
+            input = Integer.parseInt(st.nextToken());
+
+        }
     }
 }
