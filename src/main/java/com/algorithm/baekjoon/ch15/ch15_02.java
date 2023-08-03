@@ -1,4 +1,4 @@
-package com.algorithm.baekjoon;
+package com.algorithm.baekjoon.ch15;
 
 import java.io.*;
 import java.util.StringTokenizer;
