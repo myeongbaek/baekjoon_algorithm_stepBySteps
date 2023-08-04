@@ -12,25 +12,25 @@ class Main {
     public static void main(String[] args) throws IOException {
         Stack<Integer> stack = new Stack<>();
         int N = Integer.parseInt(br.readLine());
-        int cnt = 1;
+        int order = 1;
         st = new StringTokenizer(br.readLine());
         for(int i = 0; i < N; i++){
             int n = Integer.parseInt(st.nextToken());
-            if(n == cnt){
-                cnt++;
+            if(n == order){
+                order++;
             } else {
                 stack.push(n);
             }
         }
-        while(!stack.isEmpty() && cnt <= N){
-            if(stack.pop() != cnt){
+        while(!stack.isEmpty()){
+            if(stack.pop() == order){
+                order++;
+            } else {
                 bw.write("Sad");
                 break;
-            } else {
-                cnt++;
             }
         }
-        if(stack.isEmpty()){
+        if(stack.isEmpty() && order == N + 1){
             bw.write("Nice");
         }
         bw.flush();
