@@ -1,6 +1,8 @@
 package com.algorithm.baekjoon;
 
 import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -11,27 +13,44 @@ class Main {
 
     public static void main(String[] args) throws IOException {
         Stack<Integer> stack = new Stack<>();
+        Queue<Integer> queue = new LinkedList<>();
         int N = Integer.parseInt(br.readLine());
-        int order = 1;
         st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < N; i++){
-            int n = Integer.parseInt(st.nextToken());
-            if(n == order){
+
+        // 입력
+        for (int i = 0; i < N; i++) {
+            int number = Integer.parseInt(st.nextToken());
+            queue.offer(number);
+        }
+
+        // 순서
+        int order = 1;
+        while (!queue.isEmpty()) {
+            int number = queue.poll();
+            if(order == number){
                 order++;
             } else {
-                stack.push(n);
+                stack.push(number);
             }
         }
+
+        // 검사
+        boolean isNice = true;
         while(!stack.isEmpty()){
-            if(stack.pop() == order){
+            int number = stack.pop();
+            if(order == number){
                 order++;
-            } else {
-                bw.write("Sad");
+            } else{
+                isNice = false;
                 break;
             }
         }
-        if(stack.isEmpty() && order == N + 1){
+
+        // 출력
+        if (isNice) {
             bw.write("Nice");
+        } else {
+            bw.write("Sad");
         }
         bw.flush();
         bw.close();
