@@ -1,4 +1,5 @@
 :loop
+	mode 90 1.5
 
 	cd C:\Users\82103\Desktop\취업\알고리즘_문제풀이\baekjoon
 
