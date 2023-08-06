@@ -1,53 +1,51 @@
 package com.algorithm.baekjoon;
 
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-import java.util.StringTokenizer;
-
+import java.util.*;
 class ch16_05 {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;
 
     public static void main(String[] args) throws IOException {
-        Stack<Integer> stack = new Stack<>();
-        Queue<Integer> queue = new LinkedList<>();
         int N = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
+        Queue<Integer> currentLine = new LinkedList<>();
+        Stack<Integer> reservedLine = new Stack<>();
 
         // 입력
-        for (int i = 0; i < N; i++) {
-            queue.offer(Integer.parseInt(st.nextToken()));
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < N; i++){
+            currentLine.offer(Integer.parseInt(st.nextToken()));
         }
 
-        // 순서
+        // 배부
         int order = 1;
-        while (!queue.isEmpty()) {
-            if(queue.peek() == order){
-                queue.poll();
+        while(!currentLine.isEmpty()){
+            if(currentLine.peek() == order){
+                currentLine.poll();
                 order++;
-            } else if(!stack.isEmpty() && stack.peek() == order){
-                stack.pop();
+            } else if(!reservedLine.isEmpty() && reservedLine.peek() == order){
+                reservedLine.pop();
                 order++;
             } else {
-                stack.push(queue.poll());
+                reservedLine.push(currentLine.poll());
             }
         }
-        boolean isNice = true;
-        while(!stack.isEmpty()){
-            if(stack.peek() == order){
-                stack.pop();
+
+        // 검사
+        boolean check = true;
+        while(!reservedLine.isEmpty()){
+            if(reservedLine.peek() == order){
+                reservedLine.pop();
                 order++;
             } else {
-                isNice = false;
+                check = false;
                 break;
             }
         }
 
         // 출력
-        if (isNice) {
+        if(check){
             bw.write("Nice");
         } else {
             bw.write("Sad");
