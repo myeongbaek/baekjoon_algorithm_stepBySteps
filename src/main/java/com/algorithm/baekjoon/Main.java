@@ -19,28 +19,28 @@ class Main {
 
         // 입력
         for (int i = 0; i < N; i++) {
-            int number = Integer.parseInt(st.nextToken());
-            queue.offer(number);
+            queue.offer(Integer.parseInt(st.nextToken()));
         }
 
         // 순서
         int order = 1;
         while (!queue.isEmpty()) {
-            int number = queue.poll();
-            if(order == number){
+            if(queue.peek() == order){
+                queue.poll();
+                order++;
+            } else if(!stack.isEmpty() && stack.peek() == order){
+                stack.pop();
                 order++;
             } else {
-                stack.push(number);
+                stack.push(queue.poll());
             }
         }
-
-        // 검사
         boolean isNice = true;
         while(!stack.isEmpty()){
-            int number = stack.pop();
-            if(order == number){
+            if(stack.peek() == order){
+                stack.pop();
                 order++;
-            } else{
+            } else {
                 isNice = false;
                 break;
             }
