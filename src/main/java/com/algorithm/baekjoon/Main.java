@@ -1,9 +1,7 @@
 package com.algorithm.baekjoon;
 
 import java.io.*;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.StringTokenizer;
+import java.util.*;
 
 class Main {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -11,47 +9,37 @@ class Main {
     public static StringTokenizer st;
 
     public static void main(String[] args) throws IOException {
-        Deque<Integer> deq = new LinkedList<>();
+        LinkedList<Map<Integer, Integer>> linkedList = new LinkedList<>();
+        List<Integer> result = new LinkedList<>();
+        Map<Integer, Integer> hm;
         int N = Integer.parseInt(br.readLine());
-        int order, X;
-        for(int i = 0; i < N; i++){
-            st = new StringTokenizer(br.readLine());
-            order = Integer.parseInt(st.nextToken());
-            if(order == 1){
-                X = Integer.parseInt(st.nextToken());
-                deq.addFirst(X);
-            } else if(order == 2){
-                X = Integer.parseInt(st.nextToken());
-                deq.addLast(X);
-            } else if(order == 3){
-                if(!deq.isEmpty()){
-                    bw.write(String.valueOf(deq.poll()));
-                    bw.newLine();
-                } else {
-                    bw.write(String.valueOf(-1));
-                    bw.newLine();
-                }
-            } else if(order == 4){
-                if(!deq.isEmpty()){
-                    bw.write(String.valueOf(deq.pollLast()));
-                    bw.newLine();
-                } else {
-                    bw.write(String.valueOf(-1));
-                    bw.newLine();
-                }
-            } else if(order == 5){
-                bw.write(String.valueOf(deq.size()));
-                bw.newLine();
-            }else if(order == 6){
-                bw.write(String.valueOf(deq.isEmpty()? 1: 0));
-                bw.newLine();
-            }else if(order == 7){
-                bw.write(String.valueOf(!deq.isEmpty() ? deq.peek(): -1));
-                bw.newLine();
-            }else if(order == 8){
-                bw.write(String.valueOf(!deq.isEmpty() ? deq.peekLast(): - 1));
-                bw.newLine();
+        st = new StringTokenizer(br.readLine());
+
+        // 입력
+        for (int i = 1; i <= N; i++) {
+            hm = new HashMap<>();
+            hm.put(i, Integer.parseInt(st.nextToken()));
+            linkedList.offer(hm);
+        }
+
+        // 펑!
+        int index = 0, number;
+        while (!linkedList.isEmpty()) {
+            while(index < linkedList.size()){
+                index %= linkedList.size();
             }
+            hm = linkedList.remove(index);
+            for (int balloon : hm.keySet()) {
+                result.add(balloon);
+                number = hm.get(balloon);
+                index += number > 0 ? number - 1 : number + linkedList.size();
+                break;
+            }
+        }
+
+        // 출력
+        for(int x : result){
+            bw.write(x + " ");
         }
         bw.flush();
         bw.close();
