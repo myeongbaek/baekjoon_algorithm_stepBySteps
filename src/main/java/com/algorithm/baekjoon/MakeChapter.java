@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class MakeChapter {
-    private static final int CHAPTER = 16;
-    private static final int N = 11;
+    private static final int CHAPTER = 19;
+    private static final int N = 5;
     private static final String root = System.getProperty("user.dir");
     private static final String path = "\\src\\main\\java\\com\\algorithm\\baekjoon";
 

@@ -1,4 +1,4 @@
-package com.algorithm.baekjoon;
+package com.algorithm.baekjoon.ch16;
 
 import java.io.*;
 import java.util.*;
