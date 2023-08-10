@@ -1,32 +1,27 @@
 package com.algorithm.baekjoon;
 
-import java.io.*;
-import java.util.StringTokenizer;
-
 class Main {
-    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    public static StringBuilder sb = new StringBuilder();
-    public static StringTokenizer st;
+    public static void main(String[] args) {
+        // 성능 측정
+        long startTime, endTime, time, result;
 
-    public static void main(String[] args) throws IOException {
-        // 이항계수 (n, k)
-        String[] input = br.readLine().split(" ");
-        int n = Integer.parseInt(input[0]);
-        int k = Integer.parseInt(input[1]);
+        final long N = 20;
+        // 1. 재귀
+        // 동작원리 : 함수 호출 스택에 차례대로 쌓인 후 종료 조건에 도달하면
+        // 가장 위에서부터 차례대로 곱한 값을 처리하며 반환한다. 이렇게 맨 마지막에는 n! 값을 반환한다.
+        startTime = System.nanoTime();
+        result = factorialRecursive(N);
+        endTime = System.nanoTime();
+        time = endTime - startTime;
+        System.out.println("Recursive Factorial : answer = " + result + ", time = " + (double) time / 100 + "us");
+        // 2.
+    }
 
-        // 0! ~ n! 값을 구한다, 이때 0!은 1과 같다.
-        int[] memo = new int[n + 1];
-        memo[0] = 1;
-        int factorial = 1;
-        for(int i = 1; i <= n; i++){
-            factorial *= i;
-            memo[i] = factorial;
+    public static long factorialRecursive(long n) {
+        if(n <= 1){
+            return 1;
+        } else {
+            return n * factorialRecursive(n - 1);
         }
-
-        // n! / k!(n - k)!
-        bw.write(String.valueOf(memo[n] / (memo[k] * memo[n - k])));
-        bw.flush();
-        bw.close();
     }
 }
