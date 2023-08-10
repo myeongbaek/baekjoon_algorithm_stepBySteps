@@ -40,7 +40,7 @@ class Main {
         answer = binomialCoefficientRecursive(n, r);
         endTime = System.nanoTime();
         time = endTime - startTime;
-        System.out.println("Binomial Coefficient recursive : answer = " + answer + ", time = " + time + "ns");
+        System.out.println("Binomial Coefficient using recursive function call : answer = " + answer + ", time = " + time + "ns");
 
         // 2-2. 동적 계획법 : memoization
         startTime = System.nanoTime();
